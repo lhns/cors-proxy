@@ -22,6 +22,10 @@ function isPush (req, u) {
   return req.method === 'POST' && req.headers['content-type'] === 'application/x-git-receive-pack-request' && u.pathname.endsWith('git-receive-pack')
 }
 
+function isRaw (req, u) {
+  return req.method === 'GET' && u.pathname.includes('/-/raw/')
+}
+
 module.exports = function allow (req, u) {
   return (
     isPreflightInfoRefs(req, u) ||
@@ -29,6 +33,7 @@ module.exports = function allow (req, u) {
     isPreflightPull(req, u) ||
     isPull(req, u) ||
     isPreflightPush(req, u) ||
-    isPush(req, u)
+    isPush(req, u) ||
+    isRaw(req, u)
   )
 }
