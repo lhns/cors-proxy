@@ -2,7 +2,6 @@
 const url = require('url')
 const pkg = require('./package.json')
 const {send} = require('micro')
-import 'global-agent/bootstrap'
 const origin = process.env.ALLOW_ORIGIN
 const insecure_origins = (process.env.INSECURE_HTTP_ORIGINS || '').split(',')
 const middleware = require('./middleware.js')({ origin, insecure_origins })
