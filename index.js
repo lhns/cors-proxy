@@ -1,4 +1,5 @@
 'use strict'
+require('global-agent/bootstrap')
 const url = require('url')
 const pkg = require('./package.json')
 const {send} = require('micro')
